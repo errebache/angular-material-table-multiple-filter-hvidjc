@@ -1,0 +1,71 @@
+<hello name="{{ title }}"></hello>
+
+ <form [formGroup]="filterForm">
+  <div mat-dialog-content class="filter__form">
+    <div class="form-group">
+      <mat-form-field>
+      <mat-label>Position</mat-label>
+      <mat-select formControlName="position" multiple>
+        <mat-option *ngFor="let position of positionList" [value]="position">{{position}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="">Name</label>
+      <mat-form-field class="example-full-width">
+        <input matInput formControlName="name" placeholder="Enter name">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="">Email</label>
+      <mat-form-field class="example-full-width">
+        <input matInput formControlName="email" placeholder="Enter email">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="">Status</label>
+      <mat-form-field class="example-full-width">
+        <input matInput formControlName="status" placeholder="Enter status">
+      </mat-form-field>
+    </div>
+    <div class="modal-inforce__footer">
+      <button type="submit" (click)="getFormsValue()" mat-button class="primary">Submit</button>
+    </div>
+  </div>
+</form>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef>Position </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <!-- <mat-paginator [pageSizeOptions]="[2, 4, 6, 8, 10]" showFirstLastButtons></mat-paginator> -->
+</div>
